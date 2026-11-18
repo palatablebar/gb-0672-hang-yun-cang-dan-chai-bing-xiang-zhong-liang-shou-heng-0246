@@ -13,6 +13,7 @@
 | M5 净毛重核验 | 执行并复核净毛重核验 | `POST /api/weight` | `app/modules/weight/rules.py` | `tests/test_weight.py` |
 | M6 报关对账 | 执行并复核报关对账 | `POST /api/reconcile` | `app/modules/reconcile/rules.py` | `tests/test_reconcile.py` |
 | M7 版本封存 | 执行并复核版本封存 | `POST /api/archive` | `app/modules/archive/rules.py` | `tests/test_archive.py` |
+| M8 放行清单 | 维护跨航次分批出运放行清单 | `POST /api/release/ship` | `app/modules/release/rules.py` | `tests/test_release.py` |
 
 ## 陷阱登记
 
@@ -29,6 +30,9 @@
 | TRAP-06 | 全角千分位 | 静默错算或证据丢失 | 以可复核规则显式处理 | `app/modules/packaging/rules.py` | `tests/test_packaging.py::test_fullwidth_decimal` |
 | TRAP-20 | 拆并依赖环 | 静默错算或证据丢失 | 以可复核规则显式处理 | `app/modules/grouping/rules.py` | `tests/test_grouping.py::test_cycle_real` |
 | TRAP-21 | 缺失父级 | 静默错算或证据丢失 | 以可复核规则显式处理 | `app/modules/grouping/rules.py` | `tests/test_grouping.py::test_missing_parent_real` |
+| TRAP-22 | 父子同航次重复计数 | 父层与子层重复加总 | 选中节点有选中祖先即折叠，只计父层一次 | `app/modules/release/rules.py` | `tests/test_release.py::test_parent_child_counted_once_same_voyage` |
+| TRAP-23 | 出运余额随修订漂移 | 已出运结果被后续修订改写 | 已出运证据原样保留，余额按有效舱单重算并逐主单裁决冻结 | `app/modules/release/rules.py` | `tests/test_release.py::test_revision_shipped_evidence_change_freezes_master` |
+| TRAP-24 | 出运申请重试重复生效 | 重试产生第二份放行 | 以 request_id 幂等，重试只回显首次结论 | `app/store.py` | `tests/test_release.py::test_ship_idempotent_and_balance_progress` |
 
 ## 对账规则
 

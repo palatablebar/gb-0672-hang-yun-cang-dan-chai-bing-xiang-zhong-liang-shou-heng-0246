@@ -10,7 +10,8 @@
     "危险品检查",
     "净毛重核验",
     "报关对账",
-    "版本封存"
+    "版本封存",
+    "放行清单"
   ],
   "rule": "主提单与分提单拆并形成有向无环关系，件数和净毛重逐层守恒",
   "lane": "L3",
@@ -29,7 +30,8 @@
     "hazard",
     "weight",
     "reconcile",
-    "archive"
+    "archive",
+    "release"
   ],
   "labels": {
     "id": "提单编号",
@@ -63,6 +65,20 @@
     "graph_errors": "关系错误",
     "weight_errors": "重量差异",
     "child": "子单号",
-    "classes": "危险类组合"
+    "classes": "危险类组合",
+    "node_id": "放行节点",
+    "root": "主单号",
+    "voyage": "航次",
+    "status": "结论",
+    "blocks": "阻断原因",
+    "remain_pieces": "未出运件数",
+    "remain_net_kg": "未出运净重",
+    "remain_gross_kg": "未出运毛重",
+    "balance_after": "放行后余额",
+    "request_id": "申请编号",
+    "attempt_no": "申请次序",
+    "frozen": "冻结",
+    "created_at": "申请时间",
+    "selected": "申请选货"
   }
 }
